@@ -11,8 +11,13 @@ yargs.version('1.1.0');
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
-    handler: () => {
-        console.log('Adding a new note!');
+    builder: {
+        title: {
+            describe: 'Note title'
+        }
+    },
+    handler: (argv) => {
+        console.log('Adding a new note!', argv);
     }
 })
 
