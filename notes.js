@@ -20,6 +20,12 @@ const addNote = (title, body) => {
     saveNotes(notes);
 }
 
+const removeNote = title => {
+    const notes = loadNotes();
+    const notesToKeep = notes.filter(note => note.title !== title);
+    saveNotes(notesToKeep);
+}
+
 const loadNotes = () => {
     try {
 
@@ -38,5 +44,6 @@ const saveNotes = notes => {
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 };
