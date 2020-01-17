@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const yargs = require('yargs');
 const validator = require('validator');
+const notes = require('./notes.js');
 
 const command = process.argv[2];
 
@@ -24,8 +25,7 @@ yargs.command({
         }
     },
     handler: (argv) => {
-        console.log('Title: ', argv.title);
-        console.log('Body: ', argv.body);
+        notes.addNote(argv.title, argv.body);
     }
 })
 
