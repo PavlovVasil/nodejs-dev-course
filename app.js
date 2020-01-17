@@ -16,10 +16,16 @@ yargs.command({
             describe: 'Note title',
             demandOption: true,
             type: 'string'
+        },
+        body: {
+            desctribe: 'Note body',
+            demandOption: true,
+            type: 'string'
         }
     },
     handler: (argv) => {
         console.log('Title: ', argv.title);
+        console.log('Body: ', argv.body);
     }
 })
 
