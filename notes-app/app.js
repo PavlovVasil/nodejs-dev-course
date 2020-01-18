@@ -3,8 +3,6 @@ const yargs = require('yargs');
 const validator = require('validator');
 const notes = require('./notes.js');
 
-const command = process.argv[2];
-
 //Create yargs version
 yargs.version('1.1.0');
 
@@ -53,7 +51,6 @@ yargs.command({
         notes.listNotes()
     }
 })
-
 
 //Create read command
 yargs.command({
