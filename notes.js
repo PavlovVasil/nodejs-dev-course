@@ -14,9 +14,9 @@ const addNote = (title, body) => {
             title: title,
             body: body
         });
-        console.log("New note added!")
+        console.log(chalk.green.inverse('New note added!'))
     } else {
-        console.log("Note title already taken!")
+        console.log(chalk.red.inverse('Note title already taken!'))
     } 
     saveNotes(notes);
 }
@@ -35,7 +35,6 @@ const removeNote = title => {
 
 const loadNotes = () => {
     try {
-
         const dataBuffer = fs.readFileSync('notes.json');
         const dataJSON = dataBuffer.toString();
         return JSON.parse(dataJSON)
