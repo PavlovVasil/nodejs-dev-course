@@ -1,4 +1,10 @@
-fetch('http://localhost:3000/weather?address=!')
+const form = document.querySelector('form');
+const searchInput = document.querySelector('input');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const address = searchInput.value;
+    fetch(`http://localhost:3000/weather?address=${address}`)
     .then(response => response.json()
     .then(data => {
         if (data.error) {
@@ -8,3 +14,4 @@ fetch('http://localhost:3000/weather?address=!')
             console.log(data.forecast);
         }
 }))
+})
