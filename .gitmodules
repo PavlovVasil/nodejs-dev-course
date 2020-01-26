@@ -1,0 +1,3 @@
+[submodule "node-weather-app"]
+	path = node-weather-app
+	url = https://github.com/PavlovVasil/node-weather-app.git
