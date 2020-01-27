@@ -11,50 +11,9 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     } 
     
     const db = client.db(databaseName);
+    db.collection('users').findOne({ _id: new ObjectID("5e2df3025b81d72d34b677e6") }, (error, user) => {
+        if(error) { return console.log("Unable to fetch")}
 
-    db.collection('users').insertOne({
-        _id: id,
-        name: 'George',
-        age: 31
-    }, (error, result) => {
-        if (error) {
-            return console.log('Unable to insert user')
-        }
-
-        console.log(result.ops)
+        console.log(user)
     })
-
-    // db.collection('users').insertMany([
-    //     {
-    //         name: 'Jen',
-    //         age: 28
-    //     },
-    //     {
-    //         name: 'John',
-    //         age: 26
-    //     }
-    // ], (error, result) => {
-    //     if (error) { return console.log(result) }
-
-    //     console.log(result.ops)
-    // });
-
-    // db.collection('tasks').insertMany([
-    //     {
-    //         description: 'Clean the house',
-    //         completed: true
-    //     },
-    //     {
-    //         description: 'Renew inspection',
-    //         completed: false
-    //     },
-    //     {
-    //         description: 'Pot plants',
-    //         completed: false
-    //     }        
-    // ], (error, result) => {
-    //     if (error) { return console.log('Unable to insert tasks') };
-
-    //     console.log(result.ops)
-    // })
 })
