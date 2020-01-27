@@ -35,8 +35,16 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //   .then((result) => { console.log(result.modifiedCount)})
     //   .catch((error) => { console.log(error) })
 
-    db.collection('users').deleteMany({
-        age: 31
+    // db.collection('users').deleteMany({
+    //     age: 31
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+
+    db.collection('tasks').deleteOne({
+        description: 'Clean the house'
     }).then((result) => {
         console.log(result)
     }).catch((error) => {
