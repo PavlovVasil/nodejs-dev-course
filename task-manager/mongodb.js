@@ -29,11 +29,9 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     console.log(tasks)
     // })
 
-    const updatePromise = db.collection('users').updateOne(
-        { _id: new ObjectID('5e2deec7a7534f3a2cc614f1') },
-        { $inc: { age: 1 } })
-      .then((result) => { console.log(result)})
+    const updatePromise = db.collection('tasks').updateMany(
+        { completed: false },
+        { $set: { completed: true } })
+      .then((result) => { console.log(result.modifiedCount)})
       .catch((error) => { console.log(error) })
-
-    const 
 })
