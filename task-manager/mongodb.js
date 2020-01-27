@@ -29,9 +29,17 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     console.log(tasks)
     // })
 
-    const updatePromise = db.collection('tasks').updateMany(
-        { completed: false },
-        { $set: { completed: true } })
-      .then((result) => { console.log(result.modifiedCount)})
-      .catch((error) => { console.log(error) })
+    // const updatePromise = db.collection('tasks').updateMany(
+    //     { completed: false },
+    //     { $set: { completed: true } })
+    //   .then((result) => { console.log(result.modifiedCount)})
+    //   .catch((error) => { console.log(error) })
+
+    db.collection('users').deleteMany({
+        age: 31
+    }).then((result) => {
+        console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    })
 })
