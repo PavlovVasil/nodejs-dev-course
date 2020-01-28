@@ -20,21 +20,12 @@ const User = mongoose.model('User', {
     }
 })
 
-const Task = mongoose.model('Task', {
-    description: {
-        type: String
-    },
-    completed: {
-        type: Boolean
-    }
+const me = new User({
+    name: "Vasil",
+    age: -1
 })
 
-const task = new Task({
-    description: 'Learn the Mongoose library',
-    completed: false
-})
-
-task.save().then(task => {
+me.save().then(task => {
     console.log(task)
 }).catch(error => {
     console.log(error)
