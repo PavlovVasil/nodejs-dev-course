@@ -23,6 +23,17 @@ const User = mongoose.model('User', {
             }
         }
     },
+    password: {
+        type: String,
+        required: true,
+        minLength: 7,
+        trim: true,
+        validate(value) {
+            if(value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain "password"')
+            }
+        }
+    },
     age: {
         type: Number,
         validate(value) {
@@ -34,9 +45,9 @@ const User = mongoose.model('User', {
 })
 
 const me = new User({
-    name: "Vasil",
-    email: "vasil@",
-    age: -1
+    name: "    Vasil",
+    email: "VASIL@VASKO.COM     ",
+    password: '      re123   '
 })
 
 me.save().then(task => {
