@@ -46,7 +46,14 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
-})
+});
+
+userSchema.methods.toJSON = function() {
+    const user = this;
+    const userObject = user.toObject();
+    ({password, tokens, ...userObject} = userObject)
+    return userObject
+}
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
