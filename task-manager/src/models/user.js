@@ -48,6 +48,14 @@ const userSchema = new mongoose.Schema({
     }]
 });
 
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    //localField is the User model field that would be bound
+    //to the foreign field in the Task model
+    localField: '_id',
+    foreignField: 'owner'
+})
+
 
 //The object's 'toJSON' method gets called by JSON.stringify internally, and Express uses
 //JSON.stringify when sending a response, so we can control what gets stringified.
