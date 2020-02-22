@@ -30,7 +30,5 @@ const jwt = require('jsonwebtoken');
 
  (async () => {
     const token = jwt.sign({ _id: 'abc123'}, 'thisismysecret', { expiresIn: '7 days' });
-    console.log(token);
     const data = jwt.verify(token, 'thisismysecret');
-    console.log(data)
 })();

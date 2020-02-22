@@ -50,8 +50,11 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.toJSON = function() {
     const user = this;
-    const userObject = user.toObject();
-    ({password, tokens, ...userObject} = userObject)
+    //Note: took me 40 minutes of debugging to find out that
+    //using const instead of let here throws an error, because
+    //we spread the userObject and assign it to itself in the next line...
+    let userObject = user.toObject();
+    ({password, tokens, ...userObject} = userObject);
     return userObject
 }
 
