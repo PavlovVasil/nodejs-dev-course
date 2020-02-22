@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema({
     }]
 });
 
+
+//The object's 'toJSON' method gets called by JSON.stringify internally, and Express uses
+//JSON.stringify when sending a response, so we can control what gets stringified.
 userSchema.methods.toJSON = function() {
     const user = this;
     //Note: took me 40 minutes of debugging to find out that

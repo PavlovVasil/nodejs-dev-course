@@ -49,19 +49,6 @@ router.get('/users/me', auth, async (req, res) => {
     res.send(req.user);
 });
 
-router.get('/users/:id', async (req, res) => {
-    const _id = req.params.id;
-    try {
-        const user = await User.findById(_id);
-        if (!user) {
-            return res.status(404).send();
-        }
-        res.send(user);
-    } catch (e) {
-        res.status(500).send(e);
-    }
-});
-
 router.patch('/users/:id', async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['name', 'email', 'password', 'age'];
@@ -83,13 +70,10 @@ router.patch('/users/:id', async (req, res) => {
     }
 });
 
-router.delete('/users/:id', async (req, res) => {
+router.delete('/users/me', auth, async (req, res) => {
     try {
-        const user = await User.findByIdAndDelete(req.params.id);
-        if (!user) {
-            res.status(404).send();
-        }
-        res.send(user);
+        await req.user.remove();
+        res.send(req.user);
     } catch (e) {
         res.status(500).send(e);
     }
