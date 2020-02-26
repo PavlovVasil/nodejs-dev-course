@@ -71,7 +71,7 @@ userSchema.methods.toJSON = function() {
     //using const instead of let here throws an error, because
     //we spread the userObject and assign it to itself in the next line...
     let userObject = user.toObject();
-    ({password, tokens, ...userObject} = userObject);
+    ({password, tokens, avatar, ...userObject} = userObject);
     return userObject
 }
 
