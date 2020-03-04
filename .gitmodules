@@ -1,3 +1,6 @@
 [submodule "node-weather-app"]
 	path = node-weather-app
 	url = https://github.com/PavlovVasil/node-weather-app.git
+[submodule "task-manager-api"]
+	path = task-manager-api
+	url = https://github.com/PavlovVasil/task-manager-api.git
