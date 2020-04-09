@@ -8,8 +8,11 @@ const $sendLocationButton = document.querySelector('#send-location');
 const $messages = document.querySelector('#messages');
 
 //Templates
-const messageTemplate = document.querySelector('#message-template').innerHTML
-const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
+const messageTemplate = document.querySelector('#message-template').innerHTML;
+const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML;
+
+//Options
+const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true});
 
 socket.on('message', (message) => {
     const html = Mustache.render(messageTemplate, {
