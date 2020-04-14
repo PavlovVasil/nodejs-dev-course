@@ -16,14 +16,11 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 app.use(express.static(publicDirectoryPath));
 
 io.on('connection', socket => {
-    console.log('New Websocket connection');
-    console.log(generateMessage('Welcome!'))
-
     socket.on('join', ({ username, room }, callback) => {
         const { error, user } = addUser({id: socket.id, username, room});
 
         if(error) {
-
+            return callback(error);
         }
 
         socket.join(user.room);
@@ -50,7 +47,12 @@ io.on('connection', socket => {
     })
 
     socket.on('disconnect', () => {
-        io.emit('message', generateMessage('A user has left'));
+        const user = removeUser(socket.id);
+
+        if(user) {
+            io.to(user.room).emit('message', generateMessage(`${user.username} has left`));
+        }
+
     })
 })
 

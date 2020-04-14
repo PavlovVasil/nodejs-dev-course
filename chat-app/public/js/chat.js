@@ -20,7 +20,7 @@ socket.on('message', (message) => {
         createdAt: moment(message.createdAt).format('h:mm a')
     });
     $messages.insertAdjacentHTML('beforeend', html);
-});
+})
 
 socket.on('locationMessage', (message) => {
     const html = Mustache.render(locationMessageTemplate, {
@@ -44,8 +44,6 @@ $messageForm.addEventListener('submit', e => {
         if(error) {
             return console.log(error)
         }
-
-        console.log('Message was delivered')
     })
 })
 
@@ -62,12 +60,13 @@ $sendLocationButton.addEventListener('click', () => {
             longitude
         }, () => {
             $sendLocationButton.removeAttribute('disabled');
-            console.log('Location shared');
         })
     })
 })
 
-
 socket.emit('join', { username, room }, (error) => {
-    
+    if(error) {
+        alert(error);
+        location.href = '/';
+    }
 })
