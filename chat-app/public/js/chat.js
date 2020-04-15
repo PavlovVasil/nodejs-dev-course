@@ -72,3 +72,8 @@ socket.emit('join', { username, room }, (error) => {
         location.href = '/';
     }
 })
+
+socket.on('roomData', ({room, users}) => {
+    console.log(room);
+    console.log(users)
+})

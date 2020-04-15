@@ -16,8 +16,8 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 app.use(express.static(publicDirectoryPath));
 
 io.on('connection', socket => {
-    socket.on('join', ({ username, room }, callback) => {
-        const { error, user } = addUser({id: socket.id, username, room});
+    socket.on('join', (options, callback) => {
+        const { error, user } = addUser({id: socket.id, ...options});
 
         if(error) {
             return callback(error);
@@ -27,11 +27,16 @@ io.on('connection', socket => {
 
         socket.emit('message', generateMessage('Admin', 'Welcome!'));
         socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} has joined`));
+        io.to().emit('roomdata', {
+            room: user.room,
+            users: getUsersInRoom(user.room)
+        })
+        
         callback();
     })
     
     socket.on('sendMessage', (message, callback) => {
-        const user = getUser(socket.id)
+        const user = getUser(socket.id);
         const filter = new Filter();
 
         if(filter.isProfane(message)){
@@ -53,6 +58,10 @@ io.on('connection', socket => {
 
         if(user) {
             io.to(user.room).emit('message', generateMessage('Admin', `${user.username} has left`));
+            io.to(user.room).emit('roomData', {
+                room: user.room,
+                users: getUsersInRoom(user.room)
+            })
         }
 
     })
