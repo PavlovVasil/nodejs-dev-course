@@ -13,7 +13,7 @@ const addUser = ({id, username, room}) => {
     }
 
     //Check for existing user
-    const existingUser = user.find(user => {
+    const existingUser = users.find(user => {
         return user.room === room && user.username === username
     })
 
@@ -27,7 +27,7 @@ const addUser = ({id, username, room}) => {
     //Store user
     const user = { id, username, room };
 
-    user.push(user);
+    users.push(user);
     return { user }
 };
 
