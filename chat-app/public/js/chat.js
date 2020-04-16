@@ -33,6 +33,10 @@ const autoScroll = () => {
 
     //How far have I scrolled
     const scrollOffset = $messages.scrollTop + visibleHeight;
+
+    if(containerHeight - newMessageHeight <= scrollOffset) {
+        $messages.scrollTop = $messages.scrollHeight;
+    }
 }
 
 socket.on('message', (message) => {
