@@ -4,3 +4,6 @@
 [submodule "task-manager-api"]
 	path = task-manager-api
 	url = https://github.com/PavlovVasil/task-manager-api.git
+[submodule "chat-app"]
+	path = chat-app
+	url = https://github.com/PavlovVasil/chat-app.git
